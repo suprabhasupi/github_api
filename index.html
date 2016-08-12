@@ -19,25 +19,26 @@
                 <md-button class="md-raised md-primary" ng-click="getUser()">Add</md-button>
             </md-input-container>
         </div>
-        <div class="col-md-12 col-sm-12 col-xs-12" >
-        <p>Sort by: <span class="nmm" ng-click="sortName()">Name</span> <span class="nmm" ng-click="sortLocation()"> Location</span> <span class="nmm" ng-click="sortFollowers()"> Followers</span></p>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <p>Sort by: <span class="nmm" ng-click="sortName()">Name</span> <span class="nmm" ng-click="sortLocation()"> Location</span> <span class="nmm" ng-click="sortFollowers()"> Followers</span></p>
             <md-card class="col-md-3 col-sm-3 col-xs-12 card_details" ng-repeat="i in userList | orderBy:sortVal">
                 <img ng-src="{{i.avatar_url}}" class="md-card-image" alt="Profile Image">
                 <i class="fa fa-times" aria-hidden="true" ng-click="remove($index)"></i>
                 <md-card-title>
                     <md-card-title-text>
-                       <a href={{i.html_url}} target="_blank"><span class="md-headline">{{i.name}}</span></a>
+                        <a href={{i.html_url}} target="_blank"><span class="md-headline">{{i.name}}</span></a>
                     </md-card-title-text>
                 </md-card-title>
                 <md-card-content>
                     <p>Loaction: {{i.location}}</p>
-                    <a href={{i.followers_url}}><p>Followers: {{i.followers}}</p></a>
+                    <a href={{i.followers_url}}>
+                        <p>Followers: {{i.followers}}</p>
+                    </a>
                 </md-card-content>
             </md-card>
         </div>
     </div>
     </div>
-    
 </body>
 <script src="js/angular.min.js"></script>
 <script type="text/javascript" src="js/ngStorage.min.js"></script>

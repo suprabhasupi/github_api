@@ -8,10 +8,15 @@ input#input_0 {
     border-radius: 3px;
     text-indent: 8px;
     margin-left: -2px;
-
 }
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-  display: none !important;
+
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+    display: none !important;
 }
 
 .md-button {
@@ -60,36 +65,40 @@ md-card.col-md-3.card_details.ng-scope {
 md-card md-card-title {
     padding: 10px 14px 4px;
 }
-span.nmm{
-    padding:0 10px;
+
+span.nmm {
+    padding: 0 10px;
     outline: none;
 }
-span.nmm:hover, span.nmm:focus{
-       color: #27a2de;
+
+span.nmm:hover,
+span.nmm:focus {
+    color: #27a2de;
     font-weight: 700;
 }
-a.md-default-theme:not(.md-button), a:not(.md-button) {
+
+a.md-default-theme:not(.md-button),
+a:not(.md-button) {
     color: black;
 }
-a.md-default-theme:not(.md-button):hover, a:not(.md-button):hover {
+
+a.md-default-theme:not(.md-button):hover,
+a:not(.md-button):hover {
     color: rgb(24, 130, 194);
     text-decoration: none;
 }
 
 @media only screen and (max-width: 550px) {
-
-    md-card.col-md-3.card_details.ng-scope{
+    md-card.col-md-3.card_details.ng-scope {
         width: 100%;
     }
-    input#input_0{
-            width: 50%;
+    input#input_0 {
+        width: 50%;
     }
-
 }
 
 @media only screen and (max-width: 350px) {
-span.nmm{
-    padding: 0 1px;
-}
-
+    span.nmm {
+        padding: 0 1px;
     }
+}

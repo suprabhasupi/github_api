@@ -42,23 +42,22 @@
                 });
 
 
-            angular.forEach($scope.userList, function(val) {
-                               if ($scope.id == val.login) {
-                                   // $scope.result = val;
-                                   $scope.userExist = true;
-                               }
-                               });
-              if($scope.userExist){
-                   $mdToast.show(
-                            $mdToast.simple()
-                            .textContent('User Exists!')
-                            .position('top right')
-                            .hideDelay(3000)
-                        );
-              }
-              else{
-                $scope.userList.push($scope.entry);
-                $localStorage.userList = $scope.userList;}
+                angular.forEach($scope.userList, function(val) {
+                    if ($scope.id == val.login) {
+                        $scope.userExist = true;
+                    }
+                });
+                if ($scope.userExist) {
+                    $mdToast.show(
+                        $mdToast.simple()
+                        .textContent('User Exists!')
+                        .position('top right')
+                        .hideDelay(3000)
+                    );
+                } else {
+                    $scope.userList.push($scope.entry);
+                    $localStorage.userList = $scope.userList;
+                }
             }
 
 
