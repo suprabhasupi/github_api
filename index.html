@@ -1,24 +1,43 @@
 <!DOCTYPE html>
 <html ng-app="github">
+
 <head>
-	<title>Github user api</title>
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Github User API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/new_css.css">
-    <!-- <link rel="stylesheet" href="css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <!-- <link rel="stylesheet" href="css/animate.css"> -->
     <link rel="stylesheet" href="css/angular-material.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body ng-controller="githubController">
-<input type="" name="" ng-model="id">
-<button ng-click ="getUser()">Search</button>
-{{name}}
-<!-- {{data}} -->
-<div ng-repeat="i in userList"><li>{{i}}<button ng-click="remove($index)">hatao</button></li><br></div>
-<!-- {{entry}} -->
 
+<body ng-controller="githubController">
+    <div class="container">
+        <div class="col-md-12 col-sm-12 col-xs-12 main_page">
+            <md-input-container md-no-float class="md-block">
+                <input ng-model="id" type="text" placeholder="github login">
+                <md-button class="md-raised md-primary" ng-click="getUser()">Add</md-button>
+            </md-input-container>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12" >
+        <p>Sort by: <span class="nmm" ng-click="sortName()">Name</span> <span class="nmm" ng-click="sortLocation()"> Location</span> <span class="nmm" ng-click="sortFollowers()"> Followers</span></p>
+            <md-card class="col-md-3 col-sm-3 col-xs-12 card_details" ng-repeat="i in userList | orderBy:sortVal">
+                <img ng-src="{{i.avatar_url}}" class="md-card-image" alt="Profile Image">
+                <i class="fa fa-times" aria-hidden="true" ng-click="remove($index)"></i>
+                <md-card-title>
+                    <md-card-title-text>
+                       <a href={{i.html_url}} target="_blank"><span class="md-headline">{{i.name}}</span></a>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p>Loaction: {{i.location}}</p>
+                    <a href={{i.followers_url}}><p>Followers: {{i.followers}}</p></a>
+                </md-card-content>
+            </md-card>
+        </div>
+    </div>
+    </div>
+    
 </body>
 <script src="js/angular.min.js"></script>
 <script type="text/javascript" src="js/ngStorage.min.js"></script>
@@ -36,4 +55,5 @@
 <script src="js/angular-route.min.js"></script>
 <!-- App.js for this app -->
 <script type="text/javascript" src="app.js"></script>
+
 </html>

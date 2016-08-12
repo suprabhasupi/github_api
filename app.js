@@ -1,53 +1,70 @@
 (function() {
     var app = angular.module('github', ['ngMaterial', 'ngResource', 'ngRoute', 'ngStorage']);
     app.factory('githubFactory', function($resource) {
-  return $resource('https://api.github.com/users/:id', { id: '@_id' });
-});
+        return $resource('https://api.github.com/users/:id', { id: '@_id' });
+    });
 
 
+    app.controller('githubController', ['$scope', '$localStorage', '$sessionStorage', '$mdToast', 'githubFactory',
+        function($scope, $localStorage, $sessionStorage, $mdToast, githubFactory) {
 
-
-
-
-
-
-    app.controller('githubController', ['$scope', '$localStorage', '$sessionStorage', '$mdToast','githubFactory',
-        function($scope, $localStorage, $sessionStorage, $mdToast,githubFactory) {
-
-        	$scope.userList = $localStorage.userList||[];
+            $scope.userList = $localStorage.userList || [];
+            $scope.userExist = false;
             $scope.name = "supi";
-            // $scope.ud = githubService.getUser("karanisverma");
-            // console.log("UD => ", $scope.ud);
-            $scope.id ='karanisverma';
-
-// $scope.entry = githubFactory.get({ id: $scope.id }, function(data) {
-//   // $scope.entry is fetched from server and is an instance of Entry
-//   $scope.data = data;
-//   console.log("d", data);
-//   $scope.entry.$update(function() {
-//     //updated in the backend
-//   });
-// });
-$scope.remove = function(index) {
-	// $scope.x =  $localStorage.userList;
- //            $scope.x.splice(index, 1);
- //            $localStorage.userList=$scope.x;
-            $localStorage.userList.splice(index, 1);
-            console.log("refresh function called");
-            // cartService.refresh();
-        };
+            $scope.id = '';
+            $scope.sortName = function() {
+                $scope.sortVal = 'name';
+            }
+            $scope.sortLocation = function() {
+                $scope.sortVal = 'location';
+            }
+            $scope.sortFollowers = function() {
+                $scope.sortVal = 'followers';
+            }
 
 
-$scope.getUser = function(){
-$scope.entry = githubFactory.get({ id: $scope.id }, function(data) {
-  // $scope.entry is fetched from server and is an instance of Entry
-  $scope.data = data;
-  console.log("d", data);
-});
-$scope.userList.push($scope.entry);
+            // $scope.$watch('id', function() {
+            //     $scope.getUser();
+            // });
 
-$localStorage.userList = $scope.userList;
-}
+
+            $scope.remove = function(index) {
+                $localStorage.userList.splice(index, 1);
+                console.log("refresh function called");
+
+            };
+
+
+            $scope.getUser = function() {
+                $scope.entry = githubFactory.get({ id: $scope.id }, function(data) {
+                    $scope.data = data;
+                    console.log("d", data);
+                });
+
+
+            angular.forEach($scope.userList, function(val) {
+                               if ($scope.id == val.login) {
+                                   // $scope.result = val;
+                                   $scope.userExist = true;
+                               }
+                               });
+              if($scope.userExist){
+                   $mdToast.show(
+                            $mdToast.simple()
+                            .textContent('User Exists!')
+                            .position('top left')
+                            .hideDelay(3000)
+                        );
+              }
+              else{
+                $scope.userList.push($scope.entry);
+                $localStorage.userList = $scope.userList;}
+            }
+
+
+
+
+
         }
     ]);
 
