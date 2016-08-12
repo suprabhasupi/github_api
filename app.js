@@ -52,7 +52,7 @@
                    $mdToast.show(
                             $mdToast.simple()
                             .textContent('User Exists!')
-                            .position('top left')
+                            .position('top right')
                             .hideDelay(3000)
                         );
               }
